@@ -46,3 +46,7 @@ main {
 .cocktail-description-container {
     margin-top: 10%;
 }
+.cocktail-ingredient {
+    margin-top: 1%;
+    list-style: none;
+}
