@@ -1,7 +1,10 @@
 .jumbotron {
     text-align: center;
-    background-color: transparent;
+    background-color:cadetblue;
+    font-size: 30px;
     color: black;
     border-radius: 0;
     border-bottom: 10px solid black;
   }
+
+  
