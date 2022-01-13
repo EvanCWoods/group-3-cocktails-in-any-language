@@ -12,11 +12,7 @@ main {
     height: 100%;
     display: flex;
 }
-#cocktail-container,
-#language-container {
-    width: 50%;
-    height: 50%;
-}
+
 #output-container {
     width: 100%;
     height: 50%;
@@ -49,4 +45,41 @@ main {
 .cocktail-ingredient {
     margin-top: 1%;
     list-style: none;
+
+
+#cocktail-container{
+    border: 2px solid white;
+    color: white;
+    background-color: #ffaebc;
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    width: 50%;
+    margin: 10px;
+    text-align: center;
+
+}
+
+#cocktail-title {
+    font-style: italic;
+}
+
+
+#language-container{
+    border: 2px solid white;
+    color: white;
+    background-color: #ffaebc;
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    width: 50%;
+    margin: 10px;
+    text-align: center;
+    align-items: ;
+
+}
+
+#language-title {
+    font-style: italic;
+
 }
