@@ -13,6 +13,40 @@ main {
     display: flex;
 }
 
+#output-container {
+    width: 100%;
+    height: 50%;
+    position: absolute;
+    bottom: 0;
+    background: rgb(192, 180, 180);
+    display: flex;
+}
+#side-1{
+    width: 45%;
+    height: 90%;
+    margin: 2.5%;
+
+}
+#side-2 {
+    width: 45%;
+    height: 90%;
+    margin: 2.5%;
+}
+.langauge-title-container {
+    display: flex;
+    justify-content: center;
+}
+.cocktail-recipe-container {
+    margin-top: 5%;
+}
+.cocktail-description-container {
+    margin-top: 10%;
+}
+.cocktail-ingredient {
+    margin-top: 1%;
+    list-style: none;
+
+
 #cocktail-container{
     border: 2px solid white;
     color: white;
@@ -47,4 +81,5 @@ main {
 
 #language-title {
     font-style: italic;
+
 }
