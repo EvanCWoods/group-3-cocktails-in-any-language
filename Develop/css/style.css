@@ -12,3 +12,39 @@ main {
     height: 100%;
     display: flex;
 }
+
+#cocktail-container{
+    border: 2px solid white;
+    color: white;
+    background-color: #ffaebc;
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    width: 50%;
+    margin: 10px;
+    text-align: center;
+
+}
+
+#cocktail-title {
+    font-style: italic;
+}
+
+
+#language-container{
+    border: 2px solid white;
+    color: white;
+    background-color: #ffaebc;
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    width: 50%;
+    margin: 10px;
+    text-align: center;
+    align-items: ;
+
+}
+
+#language-title {
+    font-style: italic;
+}
