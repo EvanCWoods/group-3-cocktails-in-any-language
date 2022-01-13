@@ -17,22 +17,30 @@
 
   <body>
 
-    <header class="jumbotron">
+    <header>
       <h1>A Cocktail in Any Language</h1>
       <p class="caption"> Sharing your favourite cocktails with your ESL family and friends just became super easy with our cocktail selector and translator! Come on, give it a shot! </p>
     </header>
 
     <main>
+        
+      <section id="user-input-container">
         <div id="cocktail-container">
-            <h1 id="cocktail-title">Select a cocktail</h1>
-
-            
+          <h1 id="cocktail-title">Select a cocktail</h1>
+          <div class="user-input-container">
+            <input id="cocktail-input" class="input" type="text">
+            <button id="cocktail-submit-btn" class="submit-btn">Submit</button>
           </div>
         </div>
           
           <div id="language-container">
               <h1 id="language-title">Select a language</h1>
+              <div class="user-input-container">
+                <input id="cocktail-input" class="input" type="text">
+                <button id="cocktail-submit-btn" class="submit-btn">Submit</button>
+              </div>
           </div>
+      </section>
           
           <div id="output-container">
             <div class="side" id="side-1">
