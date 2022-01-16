@@ -16,3 +16,7 @@ So that I can share  it with my ESL friends and family.
 
 3. When I select a language:
 - Then I am presented with the translated cocktail (information)
+
+
+This website is viewable at: 
+https://evancwoods.github.io/group-3-cocktails-in-any-language/ 
