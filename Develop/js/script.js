@@ -15,6 +15,7 @@ function cocktail() {
     cocktail = cocktailValue.charAt(0).toUpperCase() + cocktailValue.slice(1)
     console.log(cocktail);
     getCocktailApi();
+    cocktailInput.value = "";
   });
 
   // Function to fetch the cocktail that was searched
