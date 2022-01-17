@@ -21,21 +21,23 @@ function cocktail() {
   function getCocktailApi() {
     fetch(
       `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${cocktail}`
-    ).then(function (repsonse) {
-      if (repsonse.ok) {
-        repsonse.json().then(function (data) {
+    ).then(function (response) {
+      if (response.ok) {
+          console.log(response.status);
+          response.json().then(function (data) {
+              console.log(data.drinks);
             for (let i=0; i<data.drinks.length; i++) {
                 if (data.drinks[i].strDrink == cocktail) {
-                    sendCocktail(data.drinks[i]);
+                    getDrink(data.drinks[i]);
                 }
             }
-        });
+        })
       }
     });
   }
 }
 
-function sendCocktail(attr) {
+function getDrink(attr) {
     console.log(attr);
 }
 
