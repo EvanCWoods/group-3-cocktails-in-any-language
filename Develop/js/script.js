@@ -39,7 +39,8 @@ function cocktail() {
 
 function getDrink(attr) {
     // variables for use in the function
-    let englishEngredientsList = document.getElementById("english-ingredients-list");
+    let englishIngredientsList = document.getElementById("english-ingredients-list");
+    englishIngredientsList.innerHTML = "";
     let ingredient = "";
     let measure = "";
     console.log(attr);
@@ -58,11 +59,17 @@ function getDrink(attr) {
             ingredient = attr["strIngredient" + i];
                 if (attr["strMeasure" + i] != null) {
                     measure = attr["strMeasure" + i];
-                    console.log(measure + " " + ingredient);
+                    let listItem = document.createElement("li");
+                    listItem.classList.add("cocktail-ingredient");
+                    listItem.textContent = measure + " " + ingredient;
+                    englishIngredientsList.appendChild(listItem);
                 }
             }
         }
-        console.log(ingredient);
+        let listItem = document.createElement("li");
+        listItem.classList.add("cocktail-ingredient");
+        listItem.textContent = ingredient;
+        englishIngredientsList.appendChild(listItem);
 }
 
 cocktail();
