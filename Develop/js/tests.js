@@ -1,15 +1,63 @@
-// Function to get the user cocktail choice
-function getCocktail() {
-    // DOM variables
-    let cocktailInput = document.getElementById("cocktail-input");
-    let cocktailSubmit = document.getElementById("cocktail-submit-btn");
 
-    // main logic
-    cocktailSubmit.addEventListener("click", function() {
-        cocktail = cocktailInput.value;
-        console.log(cocktailInput);
-    });
-    return cocktail;
-}
+let language = "";
+let cocktail = "";
 
-getCocktail();
+// global variables for DOM elements
+let languageSubmitButton = document.getElementById("language-submit-btn");
+
+// Function to get the user input and handle button click
+languageSubmitButton.addEventListener("click", function() {
+    let languageInput = document.getElementById("language-input");
+    let languageValue = languageInput.value;
+    language = languageValue.toLowerCase();
+    console.log(language);
+    getLanguageApi();
+});
+
+function getLanguageApi(lan) {
+fetch("https://microsoft-translator-text.p.rapidapi.com/languages?api-version=3.0", {
+	"method": "GET",
+	"headers": {
+        "accept-language": lan,
+		"x-rapidapi-host": "microsoft-translator-text.p.rapidapi.com",
+		"x-rapidapi-key": "f0eba571b5mshc9cca1ba3878dc8p1184e2jsn62f675d478a7"
+	}
+})
+.then(response => {
+	response.json()
+.then(data => {
+        console.log(data.url);
+})
+.catch(err => {
+	console.error(err);
+})});
+
+
+getLanguageApi(language);
+
+
+function getTranslationApi(text) {
+fetch(`https://microsoft-translator-text.p.rapidapi.com/translate?to=%3CREQUIRED%3E&api-version=3.0&profanityAction=NoAction&textType=plain&to=de&to=it&to=fr`, {
+	"method": "POST",
+	"headers": {
+		"content-type": "application/json",
+		"x-rapidapi-host": "microsoft-translator-text.p.rapidapi.com",
+		"x-rapidapi-key": "f0eba571b5mshc9cca1ba3878dc8p1184e2jsn62f675d478a7"
+	},
+	"body": [
+		{
+			"Text": text
+		}
+	]
+})
+.then(response => {
+	console.log(response);
+})
+.catch(err => {
+	console.error(err);
+})};
+
+getTranslationApi(language);
+
+//https://microsoft-translator-text.p.rapidapi.com/languages?api-version=3.0//
+//${text}//
