@@ -38,7 +38,31 @@ function cocktail() {
 }
 
 function getDrink(attr) {
+    // variables for use in the function
+    let englishEngredientsList = document.getElementById("english-ingredients-list");
+    let ingredient = "";
+    let measure = "";
     console.log(attr);
+    // set the english cocktail title
+    let cocktailName = attr.strDrink;
+    let englishCocktailname = document.getElementById("english-cocktail-name");
+    englishCocktailname.textContent = cocktailName;
+    // set the english cocktail instructions
+    let cocktailInstructions = attr.strInstructions;
+    let englishCocktailInstrucitons = document.getElementById("english-instructions");
+    englishCocktailInstrucitons.textContent = cocktailInstructions;
+
+    // loop through all child nodes
+    for (let i=1; i<=15; i++) {
+        if (attr["strIngredient" + i] != null) {
+            ingredient = attr["strIngredient" + i];
+                if (attr["strMeasure" + i] != null) {
+                    measure = attr["strMeasure" + i];
+                    console.log(measure + " " + ingredient);
+                }
+            }
+        }
+        console.log(ingredient);
 }
 
 cocktail();
