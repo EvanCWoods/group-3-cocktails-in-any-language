@@ -25,13 +25,21 @@ function language() {
     languageInput.value = "";
   });
   // filter languages to code (eg spanish = es)
-  if (language == "spanish") {
-      toLanguage = "es"
-  }
+//   if (language == "spanish") {
+//       toLanguage = "es"
+//   }
   // get the cocktail data (cocktail variable)
   // translate the cocktail data
   // add the cocktail data to the output box
-  let cocktail = data;
+
+//   append each value of interest to a single string with mwasurements and ingredients being its own subsection joined by a seperate delimeter
+  ingredients = [];
+  for (let i=1; i<15; i++) {
+      if (data["strIngredient" + i] != null) {
+        ingredients.push(data["strIngredient" + i]);
+      }
+  }
+  let cocktail = data.strIngredient1 + "," + data.strInstructions + "/" + ingredients.join(",") + "/" + measurements.join(",");;
   let toLanguage = "es";
   let fromLanguage = "en";
 
@@ -46,9 +54,15 @@ function language() {
     }
   )
     .then(function (response) {
-      response.json().then(function (data) {
-        console.log("Translated: \n" + data);
-      });
+      return response.json()
+      })
+      .then(function (data) {
+        console.log(data);
+        // spliting the data based on delimetr
+        splitData = data.translated_text.split(",");
+        console.log(splitData);
+
+        // ingredients = data[3].split(",");
     })
     .catch((err) => {
       console.error(err);
