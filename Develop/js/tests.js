@@ -43,7 +43,7 @@ function language() {
         measurements.push(data["strMeasure" + i]);
       }
   }
-  let cocktail = data.strDrink + "," + data.strInstructions + "," + ingredients.join("/") + "," + measurements.join("/");;
+  let cocktail = data.strDrink + "~" + data.strInstructions + "~" + ingredients.join(",") + "~" + measurements.join(",");
   let toLanguage = "es";
   let fromLanguage = "en";
 
@@ -61,16 +61,30 @@ function language() {
       return response.json()
       })
       .then(function (data) {
-        console.log(data.translated_text);
         // spliting the data based on delimetr
-        splitData = data.translated_text.split(",");
+        splitData = data.translated_text.split("~");
         for (let i=0; i<splitData.length; i++) {
-            console.log(splitData[i] + "\n" + splitData[i].length);
+            // console.log(splitData[i] + "\n" + splitData[i].length);
         }
-        let splitMeasure = splitData[4].split("/");
-        let splitIngredients = splitData[3].split("/");
+        // Isolate variables based on index in the array or strings
+        let cocktailName = splitData[0];
+        let cocktailInstructions = splitData[1];
+        let splitIngredients = splitData[2].split(","); //split the string by a , to create an array of strings
+        let splitMeasure = splitData[3].split(","); //split the string by a , to create an array of strings
 
-        console.log(splitIngredients, splitMeasure);
+        console.log(cocktailName);
+        console.log(cocktailInstructions);
+        console.log(splitIngredients);
+        console.log(splitMeasure);
+
+        // Add the data to the page
+        // name
+        let translatedCocktailName = document.getElementById("translated-cocktail-name");
+        translatedCocktailName.textContent = cocktailName;
+        // instructions
+        let translatedInstructions = document.getElementById("translated-instructions");
+        translatedInstructions.textContent = cocktailInstructions;
+        // loop through ingrediens and measurements to set the list to the data contenet
 
         // ingredients = data[3].split(",");
     })
