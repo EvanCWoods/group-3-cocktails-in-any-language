@@ -15,6 +15,7 @@ function cocktail() {
     cocktail = cocktailValue.charAt(0).toUpperCase() + cocktailValue.slice(1)
     console.log(cocktail);
     getCocktailApi();
+    cocktailInput.value = "";
   });
 
   // Function to fetch the cocktail that was searched
@@ -38,7 +39,38 @@ function cocktail() {
 }
 
 function getDrink(attr) {
+    // variables for use in the function
+    let englishIngredientsList = document.getElementById("english-ingredients-list");
+    englishIngredientsList.innerHTML = "";
+    let ingredient = "";
+    let measure = "";
     console.log(attr);
+    // set the english cocktail title
+    let cocktailName = attr.strDrink;
+    let englishCocktailname = document.getElementById("english-cocktail-name");
+    englishCocktailname.textContent = cocktailName;
+    // set the english cocktail instructions
+    let cocktailInstructions = attr.strInstructions;
+    let englishCocktailInstrucitons = document.getElementById("english-instructions");
+    englishCocktailInstrucitons.textContent = cocktailInstructions;
+
+    // loop through all child nodes
+    for (let i=1; i<=15; i++) {
+        if (attr["strIngredient" + i] != null) {
+            ingredient = attr["strIngredient" + i];
+                if (attr["strMeasure" + i] != null) {
+                    measure = attr["strMeasure" + i];
+                    let listItem = document.createElement("li");
+                    listItem.classList.add("cocktail-ingredient");
+                    listItem.textContent = measure + " " + ingredient;
+                    englishIngredientsList.appendChild(listItem);
+                }
+            }
+        }
+        let listItem = document.createElement("li");
+        listItem.classList.add("cocktail-ingredient");
+        listItem.textContent = ingredient;
+        englishIngredientsList.appendChild(listItem);
 }
 
 cocktail();
