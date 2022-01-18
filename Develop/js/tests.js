@@ -34,12 +34,16 @@ function language() {
 
 //   append each value of interest to a single string with mwasurements and ingredients being its own subsection joined by a seperate delimeter
   ingredients = [];
+  measurements = [];
   for (let i=1; i<15; i++) {
       if (data["strIngredient" + i] != null) {
         ingredients.push(data["strIngredient" + i]);
       }
+      if(data["strMeasure" + i] != null) {
+        measurements.push(data["strMeasure" + i]);
+      }
   }
-  let cocktail = data.strIngredient1 + "," + data.strInstructions + "/" + ingredients.join(",") + "/" + measurements.join(",");;
+  let cocktail = data.strDrink + "," + data.strInstructions + "," + ingredients.join("/") + "," + measurements.join("/");;
   let toLanguage = "es";
   let fromLanguage = "en";
 
@@ -57,10 +61,16 @@ function language() {
       return response.json()
       })
       .then(function (data) {
-        console.log(data);
+        console.log(data.translated_text);
         // spliting the data based on delimetr
         splitData = data.translated_text.split(",");
-        console.log(splitData);
+        for (let i=0; i<splitData.length; i++) {
+            console.log(splitData[i] + "\n" + splitData[i].length);
+        }
+        let splitMeasure = splitData[4].split("/");
+        let splitIngredients = splitData[3].split("/");
+
+        console.log(splitIngredients, splitMeasure);
 
         // ingredients = data[3].split(",");
     })
