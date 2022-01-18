@@ -4,6 +4,26 @@ function language() {
     // get the cocktail data (cocktail variable)
     // translate the cocktail data
     // add the cocktail data to the output box
+
+
+  let listOfLanguages= ["spanish", "german"]
+  
+  let languageButton= document.getElementById("language-submit-btn")
+
+  languageButton.addEventListener("click", function () {
+    let userChoice= document.getElementById ("language-input")
+    console.log(userChoice.value)
+    console.log ("working")
+  })
+
+  
+
+
+
+
+
+  
+
   let cocktail = {
       name: "margarita",
       ingredient1: "vodka",
