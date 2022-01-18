@@ -30,6 +30,7 @@ function cocktail() {
             for (let i=0; i<data.drinks.length; i++) {
                 if (data.drinks[i].strDrink == cocktail) {
                     getDrink(data.drinks[i]);
+                    setLocaStorage(data.drinks[i]);
                 }
             }
         })
@@ -73,4 +74,13 @@ function getDrink(attr) {
         englishIngredientsList.appendChild(listItem);
 }
 
+function setLocaStorage(value) {
+  let storedValue = localStorage.setItem("cocktail", JSON.stringify(value));
+}
+
+function getLocalStorage() {
+  let storedValue = JSON.parse(localStorage.getItem("cocktail"));
+  getDrink(storedValue);
+}
+getLocalStorage();
 cocktail();
