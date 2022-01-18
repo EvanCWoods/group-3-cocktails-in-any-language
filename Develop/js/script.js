@@ -13,7 +13,7 @@ function cocktail() {
     let cocktailValue = cocktailInput.value;
     cocktailValue = cocktailValue.toLowerCase();
     cocktail = cocktailValue.charAt(0).toUpperCase() + cocktailValue.slice(1)
-    console.log(cocktail);
+    // console.log(cocktail);
     getCocktailApi();
     cocktailInput.value = "";
   });
@@ -24,9 +24,9 @@ function cocktail() {
       `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${cocktail}`
     ).then(function (response) {
       if (response.ok) {
-          console.log(response.status);
+          // console.log(response.status);
           response.json().then(function (data) {
-              console.log(data.drinks);
+              // console.log(data.drinks);
             for (let i=0; i<data.drinks.length; i++) {
                 if (data.drinks[i].strDrink == cocktail) {
                     getDrink(data.drinks[i]);
@@ -45,7 +45,7 @@ function getDrink(attr) {
     englishIngredientsList.innerHTML = "";
     let ingredient = "";
     let measure = "";
-    console.log(attr);
+    // console.log(attr);
     // set the english cocktail title
     let cocktailName = attr.strDrink;
     let englishCocktailname = document.getElementById("english-cocktail-name");
