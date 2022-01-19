@@ -70,10 +70,17 @@ function language() {
         instructionsEl.textContent = cocktailInstructions;
 
         for (let i=0; i<cocktailIngredients.length; i++) {
-            let listItem = document.createElement("li");
-            listItem.classList.add("cocktail-ingredient");
-            listItem.textContent = cocktailMeasurements[i] + " " + cocktailIngredients[i];
-            ingredientsContainer.appendChild(listItem);
+            if (cocktailIngredients[i] && cocktailMeasurements[i]) {
+                let listItem = document.createElement("li");
+                listItem.classList.add("cocktail-ingredient");
+                listItem.textContent = cocktailMeasurements[i] + " " + cocktailIngredients[i];
+                ingredientsContainer.appendChild(listItem);
+            } else if (cocktailIngredients[i] && !cocktailMeasurements[i]) {
+                let listItem = document.createElement("li");
+                listItem.classList.add("cocktail-ingredient");
+                listItem.textContent = cocktailIngredients[i];
+                ingredientsContainer.appendChild(listItem);
+            }
         }
     }
 }
