@@ -1,15 +1,14 @@
-function language() {  
+function language() {
+  let translatedData = "";
+  // Get data from local storage
+  function getLocalStorage() {
+    let storedValue = JSON.parse(localStorage.getItem("cocktail"));
+    translatedData = storedValue;
+    console.log(translatedData);
+  }
+  getLocalStorage();
 
-    let data = ""
-    // Get data from local storage
-    function getLocalStorage() {
-        let storedValue = JSON.parse(localStorage.getItem("cocktail"));
-        data = storedValue;
-        console.log(data);
-      }
-      getLocalStorage();
-
-    // make a list of acceptable languages (array)
+  // make a list of acceptable languages (array)
   let language = "";
 
   // Variables for DOM elements
@@ -25,27 +24,30 @@ function language() {
     languageInput.value = "";
   });
   // filter languages to code (eg spanish = es)
-//   if (language == "spanish") {
-//       toLanguage = "es"
-//   }
+  //   if (language == "spanish") {
+  //       toLanguage = "es"
+  //   }
   // get the cocktail data (cocktail variable)
   // translate the cocktail data
   // add the cocktail data to the output box
 
-//   append each value of interest to a single string with mwasurements and ingredients being its own subsection joined by a seperate delimeter
+  //   append each value of interest to a single string with mwasurements and ingredients being its own subsection joined by a seperate delimeter
   ingredients = [];
   measurements = [];
-  for (let i=1; i<15; i++) {
-      if (data["strIngredient" + i] != null) {
-        ingredients.push(data["strIngredient" + i]);
-      }
-      if(data["strMeasure" + i] != null) {
-        measurements.push(data["strMeasure" + i]);
-      }
+  for (let i = 1; i < 15; i++) {
+    if (translatedData["strIngredient" + i] != null) {
+      ingredients.push(translatedData["strIngredient" + i]);
+    }
+    if (translatedData["strMeasure" + i] != null) {
+      measurements.push(translatedData["strMeasure" + i]);
+    }
   }
-  let cocktail = data.strDrink + "~" + data.strInstructions + "~" + ingredients.join(",") + "~" + measurements.join(",");
+
+  let cocktail = "hello world";//translatedData.strDrink + "~" + translatedData.strInstructions + "~" + ingredients.join(",") + "~" + measurements.join(",");
   let toLanguage = "es";
-  let fromLanguage = "en";
+  let fromLanguage = "";
+
+  console.log(cocktail);
 
   fetch(
     `https://fast-translate.p.rapidapi.com/fastTranslate/translate?text=${cocktail}&langDest=${toLanguage}&langOrigin=${fromLanguage}`,
@@ -58,40 +60,47 @@ function language() {
     }
   )
     .then(function (response) {
-      return response.json()
-      })
-      .then(function (data) {
-        // spliting the data based on delimetr
-        splitData = data.translated_text.split("~");
-        for (let i=0; i<splitData.length; i++) {
-            // console.log(splitData[i] + "\n" + splitData[i].length);
-        }
-        // Isolate variables based on index in the array or strings
-        let cocktailName = splitData[0];
-        let cocktailInstructions = splitData[1];
-        let splitIngredients = splitData[2].split(","); //split the string by a , to create an array of strings
-        let splitMeasure = splitData[3].split(","); //split the string by a , to create an array of strings
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+      // spliting the data based on delimetr
+      splitData = data.translated_text.split("~");
+      for (let i = 0; i < splitData.length; i++) {
+        console.log(splitData[i] + "\n" + splitData[i].length);
+      }
+      // Isolate variables based on index in the array or strings
+      let cocktailName = splitData[0];
+      let cocktailInstructions = splitData[1];
+      // fix this
+      let splitIngredients = splitData[2].split(","); //split the string by a , to create an array of strings
+      let splitMeasure = splitData[3].split(","); //split the string by a , to create an array of strings
 
-        console.log(cocktailName);
-        console.log(cocktailInstructions);
-        console.log(splitIngredients);
-        console.log(splitMeasure);
+      console.log(cocktailName);
+      console.log(cocktailInstructions);
+      console.log(splitIngredients);
+      console.log(splitMeasure);
 
-        // Add the data to the page
-        // name
-        let translatedCocktailName = document.getElementById("translated-cocktail-name");
-        translatedCocktailName.textContent = cocktailName;
-        // instructions
-        let translatedInstructions = document.getElementById("translated-instructions");
-        translatedInstructions.textContent = cocktailInstructions;
-        // loop through ingrediens and measurements to set the list to the data contenet
+      let translatedIngredientList = document.getElementById("translated-ingredient-list")
 
-        // ingredients = data[3].split(",");
+      for (let i = 1; i <= 15; i++) {
+        ingredient = attr["strIngredient" + i];
+        measure = attr["strMeasure" + i];
+        let listItem = document.createElement("li");
+        listItem.classList.add("cocktail-ingredient");
+        listItem.textContent = measure + " " + ingredient;
+        translatedIngredientList.appendChild(listItem);
+      }
+      let listItem = document.createElement("li");
+      listItem.classList.add("cocktail-ingredient");
+      listItem.textContent = ingredient;
+      translatedIngredientList.appendChild(listItem);
+
+      ingredients = data[3].split(",");
     })
     .catch((err) => {
       console.error(err);
     });
-    
 }
 
 language();
