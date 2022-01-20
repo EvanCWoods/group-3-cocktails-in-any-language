@@ -77,9 +77,6 @@ h1, .caption {
 
 #user-input-container {
     display: flex;
-}
-
-#cocktail-container{
     border: 2px solid white;
     border-radius: 25pt;
     color: white;
@@ -87,29 +84,15 @@ h1, .caption {
     display: flex;
     flex-direction: column;
     height: 500px;
-    width: 50%;
+    width: 100%;
     margin: 10px;
     text-align: center;
-
 }
 
 #cocktail-title, #language-title{
     font-style: italic;
 }
 
-#language-container{
-    border: 2px solid white;
-    border-radius: 25pt;
-    color: white;
-    background-color: var(--CocktailContainer);
-    display: flex;
-    flex-direction: column;
-    height: 500px;
-    width: 50%;
-    margin: 10px;
-    text-align: center;
-
-}
 
 .footer img {
     position: relative;

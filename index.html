@@ -32,16 +32,19 @@
           <h1 id="cocktail-title">Select a cocktail</h1>
           <div class="user-input-container">
             <input id="cocktail-input" class="input" type="text">
-            <button id="cocktail-submit-btn" class="submit-btn">Submit</button>
           </div>
         </div>
           <div id="language-container">
               <h1 id="language-title">Select a language</h1>
               <div class="user-input-container">
-                <input id="language-input" class="input" type="text">
-                <button id="language-submit-btn" class="submit-btn">Submit</button>
+                <select id="language-options" class="options" name="language">
+                  <option value="Spanish">Spanish</option>
+                  <option value="German">German</option>
+                  <option value="Italian">Italian</option>
+                </select>
               </div>
           </div>
+          <button id="user-submit-btn">Submit</button>
       </section>
           
           <div id="output-container">
@@ -91,6 +94,5 @@
     </div>
     
   </body>
-  <script src="./Develop/js/script.js"></script>
-  <script src="./Develop/js/language.js"></script>
+  <script src="./Develop/js/logic.js"></script>
 </html>
