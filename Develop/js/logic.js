@@ -7,7 +7,8 @@ let userSubmitButton = document.getElementById("user-submit-btn");
 userSubmitButton.addEventListener("click", function () {
     // Execute all code executions
     let language = getLanguageChoice();
-    getCocktailApi(language);
+    const cocktail = document.getElementById("cocktail-input").value;
+    getCocktailApi(cocktail, language);
 });
 
 
@@ -26,17 +27,17 @@ function getLanguageChoice() {
 
 
 // Function to get the cocktail data
-function getCocktailApi(language) {
-    let cocktail = "Margarita"
+function getCocktailApi(target, language) {
+    // let cocktail = "Margarita"
     let cocktailData = "";
     fetch(
-        `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${cocktail}`
+        `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${target}`
     ).then(function (response) {
         if (response.ok) {
             // console.log(response.status);
             response.json().then(function (data) {
                 for (let i = 0; i < data.drinks.length; i++) {
-                    if (data.drinks[i].strDrink == cocktail) {
+                    if (data.drinks[i].strDrink == target) {
                         // set the global variable for cocktailData
                         cocktailData = data.drinks[i];
                         let cocktailName = cocktailData.strDrink;
