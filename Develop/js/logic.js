@@ -1,13 +1,13 @@
 // Global variables
 let cocktailData = "";  // For storing the cocktail api object
-let setLanguage = "";  // For storing the language choice 
+// let cocktailChoice = "";
 
 // submit button event listener to handle all code executions
 let userSubmitButton = document.getElementById("user-submit-btn");
 userSubmitButton.addEventListener("click", function () {
     // Execute all code executions
-    getLanguageChoice();
-    getCocktailApi();
+    let language = getLanguageChoice();
+    getCocktailApi(language);
 });
 
 
@@ -16,18 +16,18 @@ function getLanguageChoice() {
     let languageInput = document.getElementById("language-options");
     let languageValue = languageInput.value;
     if (languageValue == "Spanish") {
-        setLanguage = "es";
+        return "es";
     } else if (languageValue == "German") {
-        setLanguage = "de";
+        return "de";
     } else if (languageValue == "Japanese") {
-        setLanguage = "ja";
+        return "ja";
     }
 }
 
 
 // Function to get the cocktail data
-function getCocktailApi() {
-    let cocktail = "Margarita";
+function getCocktailApi(language) {
+    let cocktail = "Margarita"
     fetch(
         `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${cocktail}`
     ).then(function (response) {
@@ -38,8 +38,8 @@ function getCocktailApi() {
                     if (data.drinks[i].strDrink == cocktail) {
                         // set the global variable for cocktailData
                         cocktailData = data.drinks[i];
-                        console.log(cocktailData);
-                        getTranslation(cocktailData, setLanguage);
+                        getTranslation(cocktailData, language);
+                        showData(cocktailData)
                     }
                 }
             });
@@ -52,7 +52,6 @@ function getCocktailApi() {
 function getTranslation(value, language) {
     let fromLanguage = "";
     let toLanguage = language;
-    console.log(toLanguage);
 
     let cocktailName = value.strDrink;
     let cocktailInstructions = value.strInstructions;
@@ -83,6 +82,33 @@ function getTranslation(value, language) {
             return response.json();
         })
         .then(function (data) {
-            console.log(data.translated_text);
+            let sortedData = sortData(data.translated_text);
+            showData(sortedData);
         });
+}
+
+function sortData(data) {
+    // logic for sorting
+    const dataSet = data.split("~");
+    const name = dataSet[0];
+    const instructions = dataSet[1];
+    const ingredients = dataSet[2].split(",");
+    const measurements = dataSet[3].split(",");
+
+    return {
+        strDrink: name,
+        strInstructions: instructions,
+        strIngredients: ingredients,
+        strMeasurements: measurements
+
+    };
+}
+
+function showData(data) {
+    const cocktailName = data.strDrink;
+    const cocktailInstructions = data.strInstructions;
+    const cocktailIngredients = data.strIngredients;
+    const cocktailMeasurements = data.strMeasurements;
+
+    console.log(cocktailName, cocktailInstructions, cocktailIngredients, cocktailMeasurements)
 }
