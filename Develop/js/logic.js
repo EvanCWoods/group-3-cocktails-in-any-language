@@ -7,7 +7,10 @@ let userSubmitButton = document.getElementById("user-submit-btn");
 userSubmitButton.addEventListener("click", function () {
     // Execute all code executions
     let language = getLanguageChoice();
-    const cocktail = document.getElementById("cocktail-input").value;
+    let cocktailInput = document.getElementById("cocktail-input");
+    let cocktailValue = cocktailInput.value;
+    cocktailValue = cocktailValue.toLowerCase();
+    const cocktail = cocktailValue.charAt(0).toUpperCase() + cocktailValue.slice(1)
     getCocktailApi(cocktail, language);
 });
 
