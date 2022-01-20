@@ -7,7 +7,11 @@ userSubmitButton.addEventListener("click", function () {
     let cocktailValue = cocktailInput.value;
     cocktailValue = cocktailValue.toLowerCase();
     const cocktail = cocktailValue.charAt(0).toUpperCase() + cocktailValue.slice(1)
-    getCocktailApi(cocktail, language);
+    if (localStorage.getItem("cocktail")) {
+        getStoredData(language);
+    } else {
+        getCocktailApi(cocktail, language);
+    }
 });
 
 
@@ -141,4 +145,10 @@ function showData(data, location) {
             cocktailIngredientsOutput.appendChild(listItem);
         }
     }
+}
+
+function getStoredData(language) {
+    let storedItem = JSON.parse(localStorage.getItem("cocktail"));
+    showData(storedItem, "english");
+    getTranslation(storedItem, language);
 }
