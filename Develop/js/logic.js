@@ -1,7 +1,3 @@
-// Global variables
-// For storing the cocktail api object
-// let cocktailChoice = "";
-
 // submit button event listener to handle all code executions
 let userSubmitButton = document.getElementById("user-submit-btn");
 userSubmitButton.addEventListener("click", function () {
@@ -62,6 +58,7 @@ function getCocktailApi(target, language) {
                             strIngredients: cocktailIngredients,
                             strMeasurements: cocktailMeasurements
                         }
+                        localStorage.setItem("cocktail", JSON.stringify(filteredData)); // Set the localStorage to the filtered dat aobject
                         getTranslation(filteredData, language);
                         showData(filteredData, "english");
                     }
@@ -131,7 +128,7 @@ function showData(data, location) {
     // loop through the measurements & ingredients list
     let cocktailIngredientsOutput = document.getElementById(`${location}-ingredients-list`);
     cocktailIngredientsOutput.innerHTML = "";
-    for (let i=0; i<cocktailIngredients.length; i++) {
+    for (let i = 0; i < cocktailIngredients.length; i++) {
         if (cocktailIngredients[i] && cocktailMeasurements[i]) {
             let listItem = document.createElement("li");
             listItem.classList.add("cocktail-ingredient");
