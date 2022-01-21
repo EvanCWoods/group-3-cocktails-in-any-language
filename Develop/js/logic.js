@@ -1,17 +1,17 @@
+let globalLanguage = "";
+
 // submit button event listener to handle all code executions
 let userSubmitButton = document.getElementById("user-submit-btn");
 userSubmitButton.addEventListener("click", function () {
     // Execute all code executions
     let language = getLanguageChoice();
+    globalLanguage = language;
+    console.log(globalLanguage);
     let cocktailInput = document.getElementById("cocktail-input");
     let cocktailValue = cocktailInput.value;
     cocktailValue = cocktailValue.toLowerCase();
     const cocktail = cocktailValue.charAt(0).toUpperCase() + cocktailValue.slice(1)
-    if (localStorage.getItem("cocktail")) {
-        getStoredData(language);
-    } else {
-        getCocktailApi(cocktail, language);
-    }
+    getCocktailApi(cocktail, language);
 });
 
 
@@ -31,7 +31,6 @@ function getLanguageChoice() {
 
 // Function to get the cocktail data
 function getCocktailApi(target, language) {
-    // let cocktail = "Margarita"
     let cocktailData = "";
     fetch(
         `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${target}`
@@ -62,7 +61,7 @@ function getCocktailApi(target, language) {
                             strIngredients: cocktailIngredients,
                             strMeasurements: cocktailMeasurements
                         }
-                        localStorage.setItem("cocktail", JSON.stringify(filteredData)); // Set the localStorage to the filtered dat aobject
+                        localStorage.setItem(filteredData.strDrink, JSON.stringify(filteredData)); // Set the localStorage to the filtered dat aobject
                         getTranslation(filteredData, language);
                         showData(filteredData, "english");
                     }
@@ -93,6 +92,7 @@ function getTranslation(value, language) {
             return response.json();
         })
         .then(function (data) {
+            console.log(data);
             let sortedData = sortData(data.translated_text);
             showData(sortedData, "translated");
         });
@@ -147,8 +147,25 @@ function showData(data, location) {
     }
 }
 
-function getStoredData(language) {
-    let storedItem = JSON.parse(localStorage.getItem("cocktail"));
-    showData(storedItem, "english");
-    getTranslation(storedItem, language);
+// Function to display the saved data
+let savedSearches = document.getElementById("saved-searches");
+function getStoredData() {
+    for (let i=0; i<localStorage.length; i++) {
+        const savedCocktail = JSON.parse(localStorage.getItem(localStorage.key(i)));
+        const savedItem = document.createElement("button");
+        console.log(savedCocktail);
+        savedItem.textContent = savedCocktail.strDrink;
+        savedSearches.appendChild(savedItem);
+    }
+    // showData(storedItem, "english");
+    // getTranslation(storedItem, language);
 }
+getStoredData();
+
+// Function to search based on saved seaches button
+savedSearches.addEventListener("click", function(event) {
+    let reSearchDrink = JSON.parse(localStorage.getItem(event.target.textContent));
+    console.log(reSearchDrink);
+    showData(reSearchDrink, "english");
+    getTranslation(reSearchDrink, globalLanguage);
+});
