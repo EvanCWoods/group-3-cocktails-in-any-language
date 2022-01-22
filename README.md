@@ -34,13 +34,13 @@ https://evancwoods.github.io/group-3-cocktails-in-any-language/
 The application can be accessed by anyone through a web browser and once the user has selected the language they would like to translate the recipe text is displayed down the bottom of the page and can be easily copied and pasted in any other application and sent to friends and family who may not speak english. 
 
 When the user enters the link displayed in "Installation" the user will be met with a screen where they can enter the cocktail name at the top of the site. The first step is to enter the cocktail name under the heading "Select a Cocktail" as below:
-![Cocktail_Name](./Images/Enter Cocktail Name.png)
+![plot](./Images/Enter Cocktail Name/plot.png)
 
 Once the cocktail name is entered the second step is for the user to select the language they want to translate to in the drop down list that is displayed under the heading "Select a Language" as below:
-![Language_Drop_Down](./Images/Select from the drop down menu of languages.png)
+![plot](./Images/Select from the drop down menu of languages/plot.png)
 
 When the language from the drop down is selected the user clicks on the submit button and the recipe text is translated from english to the language the user has selected as below:
-![Translated_Text](./Images/Translated text displayed.png)
+![plot](./Images/Translated text displayed/plot.png)
 
 ## License
-Licensed under the [MIT License]_(LICENCE)_
+Licensed under the [MIT License](LICENSE)
