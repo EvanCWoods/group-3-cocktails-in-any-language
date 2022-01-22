@@ -1,4 +1,4 @@
-# group-3-coctails-in-any-language
+# group-3-Cocktails-In-Any-Language
 
 # Description
 
