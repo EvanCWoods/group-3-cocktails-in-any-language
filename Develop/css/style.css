@@ -25,13 +25,21 @@
 body { background-color: var(--Background);
 }
 
-header h1 {
-    font-family: 'Mochiy Pop P One', sans-serif;
+header h1,h2,h3 {
+    text-align: center;
+    padding: 10px;
+    /* font-family: 'Mochiy Pop P One', sans-serif;
+    font-family: 'Neonderthaw', cursive;
+    font-family: 'Rock Salt', cursive; */
+    font-family: 'Special Elite', cursive;
 }
 
-h1, .caption {
+
+.caption {
     text-align: center;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+    font-family: 'Mochiy Pop P One', sans-serif;
+    font-style: italic; 
+    font-size: 12px;
 }
 
 #output-container {
@@ -39,27 +47,21 @@ h1, .caption {
     height: 30%;
     position: relative;
     bottom: 0;
-    background: var(--Blue);
     display: flex;
-    border: 2px solid white;
-    margin: 10px;
+    margin: 0 auto
 }
 
-#side-1{
+#side-1, #side-2 {
     width: 45%;
     height: 90%;
     margin: 2.5%;
-    border: 2px solid white;
+    border: 4px solid white;
     border-radius: 25pt;
+    background: var(--Blue);
+    text-align: center;
 
 }
-#side-2 {
-    width: 45%;
-    height: 90%;
-    margin: 2.5%;
-    border: 2px solid white;
-    border-radius: 25pt;
-}
+
 .langauge-title-container {
     display: flex;
     justify-content: center;
@@ -77,22 +79,42 @@ h1, .caption {
 
 #user-input-container {
     display: flex;
-    border: 2px solid white;
-    border-radius: 25pt;
+    border: 4px solid white;
+    border-radius: 45pt;
     color: white;
     background-color: var(--CocktailContainer);
     display: flex;
     flex-direction: column;
-    height: 500px;
-    width: 100%;
-    margin: 10px;
+    height: 300px;
+    width: 70%;
+    justify-content: space-around;
+    margin: 0 auto;
     text-align: center;
+}
+
+#language-options {
+    color:var(--FontColor);
+    min-width: 160px;
+    padding: 8px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+#user-submit-btn {
+    border-radius: 10rem;
+    width: 10vw; 
+    margin: 0 auto;  
+}
+
+#user-submit-btn:hover {
+    transform: scale(1.1);
 }
 
 #cocktail-title, #language-title{
     font-style: italic;
 }
-
 
 .footer img {
     position: relative;
