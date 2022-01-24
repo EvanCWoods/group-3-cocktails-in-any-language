@@ -121,3 +121,12 @@ header h1,h2,h3 {
     width: 100%;
 }
 
+.submit-btn {
+    padding-left: 5%;
+    padding-right: 5%;
+    border-radius: 5px;
+}
+
+.side {
+    min-height: 300px;
+}
