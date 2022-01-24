@@ -104,3 +104,7 @@ h1, .caption {
     padding-right: 5%;
     border-radius: 5px;
 }
+
+.side {
+    min-height: 300px;
+}
